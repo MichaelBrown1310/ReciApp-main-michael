@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+    background: url('background6.jpg')no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+
+table {
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    
+}
+.contenedor__todo {
+    margin-top: 120px;
+}
+.form-value {
+    overflow-y: auto; /* Agregamos un scroll vertical si es necesario */
+    max-height: 660px; /* Altura máxima para el scroll vertical */
+    max-width: 800px;
+}
+
+.form-box{
+    position: relative;
+    width: 450px;
+    height: 900px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    margin-top: 0; 
+    margin-left: 3%;
+    padding: 0;
+
+
+}
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+    top: 100px;
+    left: 13%;
+    position: fixed;
+}
+.atras{
+    top: 0;
+}
+.inputbox{
+    position: relative;
+    margin: 20px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: #fff;
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+.forget{
+    margin: -15px 0 15px ;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;  
+}
+
+.forget label input{
+    margin-right: 3px;
+    
+}
+.forget label a{
+    color: #fff;
+    text-decoration: none;
+}
+.forget label a:hover{
+    text-decoration: underline;
+}
+button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 4%; 
+}
+.register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
+}
+input:focus ~ label,
+input:valid ~ label{
+top: -5px;
+}
+
+
+select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: transparent;
+    background-image: none;
+    flex: 1;
+    padding: 0.3em;
+    color:#ffffff;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'poppins',sans-serif;
+    margin: 5px;
+    border-bottom: 2px solid #fff; 
+ }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    display: flex;
+    width: 200;
+    height: 50px;
+    line-height: 3;
+    background: transparent;
+    overflow: hidden;
+    border-radius: .25em;
+    border-bottom: 2px solid #fff;  
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+    color: rgb(255, 224, 240);
+ }
+ .select:hover::after {
+    color: rgb(255, 255, 255);
+ }
+ .forget{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+ }
