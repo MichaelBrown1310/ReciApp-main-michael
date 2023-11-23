@@ -98,7 +98,7 @@
                                 </div>
 
                                 <!-- Agregar campo oculto para almacenar usuario_id -->
-                                <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['usuario_id']; ?>">
+                                <input type="hidden" name="usuario_id" value="<?php echo $_SESSION['usuario']; ?>">
 
                             <br><br><br>
                                 <button>Registrar Vehiculo</button>

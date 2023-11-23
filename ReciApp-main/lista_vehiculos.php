@@ -38,7 +38,10 @@ if (isset($_GET['buscar'])) {
 }
 
 // Consulta SQL para obtener datos de la tabla con filtro de búsqueda
-$sql = "SELECT * FROM usuarios WHERE nombre LIKE '%$search%' OR apellido_1 LIKE '%$search%'  OR apellido_2 LIKE '%$search%'  OR usuario_id LIKE '%$search%'";
+$sql = "SELECT vehiculos.*, usuarios.*
+FROM vehiculos
+LEFT JOIN usuarios ON vehiculos.usuario_id = usuarios.usuario_id
+WHERE vehiculos.usuario_id LIKE '%$search%' OR vehiculos.placa LIKE '%$search%'";
 #$sql = "SELECT * FROM residentes WHERE inmueble_id = (SELECT inmueble_id FROM residentes WHERE documento = $cedula);";
 
 
@@ -99,7 +102,6 @@ echo "<script>
 </script>";
 
 echo "<style>
-
 body {
     background-image: url('background6.jpg');
     background-size: cover;
@@ -205,15 +207,10 @@ table {
 
 </style>";
 
-
-
-
 echo "<div style='max-height: 1000px; overflow: auto;'>";
 // Verificar si hay resultados
-
 if ($result->num_rows > 0) {
     // Imprimir formulario de búsqueda
-    
     echo "<form method='get' action='listausuario.php' style='margin-top:50; position: fixed; top: 0; left: 10%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.4); padding: 10px; border-radius: 10px; text-align: center;'>";
     echo "<label>Buscar:</label>";
     echo "<input type='text' name='buscar' value='$search'>";
@@ -223,11 +220,96 @@ if ($result->num_rows > 0) {
     echo "<div style='margin-top: 50px;'>";
     // Imprimir encabezados de la tabla
     echo "<table border='1' style='width: 1000px;'>";
-    echo "<tr style='position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.7);'><th>ID</th><th>documento</th><th>Nombre</th><th>Apellido</th><th>Apellido</th><th>Telefono</th><th>Correo electronico</th></tr>";
+    echo "<tr style='position: sticky; top: 0; background-color: rgba(0, 0, 0, 0.7);'><th>ID</th><th>Dueño</th><th>Placa</th><th>Tipo</th><th>Color</th></tr>";
 
     // Imprimir datos de la tabla
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["usuario_id"] . "</td><td>" . $row["documento"] . "</td><td>" . $row["nombre"] . "</td><td>" . $row["apellido_1"] . "</td><td>" . $row["apellido_2"] . "</td><td>" . $row["celular"] . "</td><td>" . $row["email"] . "</td></tr>";
+        $tipo_vehiculo = "";
+        $color_vehiculo = "";
+    
+        // Traducción del tipo de vehículo
+        switch ($row["tipo_vehiculo_id"]) {
+            case 1:
+                $tipo_vehiculo = "Carro gasolina";
+                break;
+            case 2:
+                $tipo_vehiculo = "Carro electrico";
+                break;
+            case 3:
+                $tipo_vehiculo = "Harro hibrido";
+                break;
+            case 4:
+                $tipo_vehiculo = "Moto";
+                break;
+            case 5:
+                $tipo_vehiculo = "Cuatrimoto";
+                break;
+            case 6:
+                $tipo_vehiculo = "Bicicleta";
+                break;
+            case 7:
+                $tipo_vehiculo = "Scooter";
+                break;
+            // Agrega más casos según sea necesario
+            default:
+                // Manejo para otros casos si es necesario
+                break;
+        }
+    
+        // Traducción del color del vehículo
+        switch ($row["color_vehiculo_id"]) {
+            case 1:
+                $color_vehiculo = "Blanco";
+                break;
+            case 2:
+                $color_vehiculo = "Negro";
+                break;
+            case 3:
+                $color_vehiculo = "Plateado/Gris";
+                break;
+            case 4:
+                $color_vehiculo = "Azul";
+                break;
+            case 5:
+                $color_vehiculo = "Rojo";
+                break;
+            case 6:
+                $color_vehiculo = "Verde";
+                break;
+            case 7:
+                $color_vehiculo = "Marron";
+                break;
+            case 8:
+                $color_vehiculo = "Beige";
+                break;
+            case 9:
+                $color_vehiculo = "Amarillo";
+                break;
+            case 10:
+                $color_vehiculo = "Naranja";
+                break;
+            case 11:
+                $color_vehiculo = "Dorado";
+                break;
+            case 12:
+                $color_vehiculo = "Bronce";
+                break;
+            case 13:
+                $color_vehiculo = "Morado";
+                break;
+            case 14:
+                $color_vehiculo = "Rosa";
+                break;
+            case 15:
+                $color_vehiculo = "Turquesa";
+                break;
+            // Agrega más casos según sea necesario
+            default:
+                // Manejo para otros casos si es necesario
+                break;
+        }
+    
+        echo "<tr><td>" . $row["usuario_id"] . "</td><td>" . $row["nombre"] . "</td><td>" . $row["placa"] . "</td><td>" . $tipo_vehiculo . "</td><td>" . $color_vehiculo . "</td></tr>";
     }
 
     // Cerrar la etiqueta de la tabla
@@ -238,8 +320,6 @@ if ($result->num_rows > 0) {
 }
 echo "</div>";
 echo "</div>";
-echo' <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>';
 // Cerrar la conexión a la base de datos
 $conn->close();
 
